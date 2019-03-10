@@ -71,20 +71,23 @@ fn check_chtype_size(ncurses_lib: &Option<Library>) {
 #include <limits.h>
 #include <stdio.h>
 
-#include <ncurses.h>
+//#include <ncurses.h>
 
 int main(void)
 {
-    if (sizeof(chtype)*CHAR_BIT == 64) {
-        puts(\"cargo:rustc-cfg=feature=\\\"wide_chtype\\\"\");
-    } else {
-        /* We only support 32-bit and 64-bit chtype. */
-        assert(sizeof(chtype)*CHAR_BIT == 32 && \"unsupported size for chtype\");
-    }
-
+//
+//    if (sizeof(chtype)*CHAR_BIT == 64) {
+//        puts(\"cargo:rustc-cfg=feature=\\\"wide_chtype\\\"\");
+//    } else {
+//        /* We only support 32-bit and 64-bit chtype. */
+//        assert(sizeof(chtype)*CHAR_BIT == 32 && \"unsupported size for chtype\");
+//    }
+//
+    puts(\"cargo:rustc-cfg=feature=\\\"wide_chtype\\\"\");
+/*
     if (NCURSES_MOUSE_VERSION == 1) {
         puts(\"cargo:rustc-cfg=feature=\\\"mouse_v1\\\"\");
-    }
+    }*/
     return 0;
 }
     ").expect(&format!("cannot write into {}", src));
